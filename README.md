@@ -49,7 +49,7 @@ pip install -r requirements.txt
 2. **Other Python Packages and APIs:**
 
    This project leverages this Python packages and external APIs,
-   - ```zenml``` package: Create machine learning pipelines with minimal code changes
+   - ```pip install qdrant-client``` package: Python Qdrant Client library and SDK for the Qdrant vector search engine.
    - ...
    
 ## Bugs and Feature Requests

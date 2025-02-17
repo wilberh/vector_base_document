@@ -10,13 +10,47 @@ from qdrant_client.http import exceptions
 from qdrant_client.http.models import Distance, VectorParams
 from qdrant_client.models import CollectionInfo, PointStruct, Record
 
-from llm_engineering.application.networks.embeddings import EmbeddingModelSingleton
-from llm_engineering.domain.exceptions import ImproperlyConfigured
-from llm_engineering.domain.types import DataCategory
-from llm_engineering.infrastructure.db.qdrant import connection
+from qdrant_client import QdrantClient
+from qdrant_client.http import models
+from qdrant_client.http.models import ScoredPoint
+from enum import StrEnum
+
+
+class LLMTwinException(Exception):
+    pass
+
+
+class ImproperlyConfigured(LLMTwinException):
+    pass
+
+
+class LLMTwinException(Exception):
+    pass
+
+
+class ImproperlyConfigured(LLMTwinException):
+    pass
+
+class DataCategory(StrEnum):
+    PROMPT = "prompt"
+    QUERIES = "queries"
+
+    INSTRUCT_DATASET_SAMPLES = "instruct_dataset_samples"
+    INSTRUCT_DATASET = "instruct_dataset"
+    PREFERENCE_DATASET_SAMPLES = "preference_dataset_samples"
+    PREFERENCE_DATASET = "preference_dataset"
+
+    POSTS = "posts"
+    ARTICLES = "articles"
+    REPOSITORIES = "repositories"
+
+
+def connection(host: str = "localhost", port: int = 6333) -> None:
+    db_client = QdrantClient(host=host, port=port)
+    return db_client
+
 
 T = TypeVar("T", bound="VectorBaseDocument")
-
 
 class VectorBaseDocument(BaseModel, Generic[T], ABC):
     id: UUID4 = Field(default_factory=uuid.uuid4)
