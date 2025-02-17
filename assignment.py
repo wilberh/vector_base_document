@@ -194,6 +194,23 @@ class VectorBaseDocument(BaseModel, Generic[T], ABC):
         return connection.create_collection(collection_name=collection_name, vectors_config=vectors_config)
 
     @classmethod
+    def delete_collection(cls: Type[T]) -> bool:
+        collection_name = cls.get_collection_name()
+        use_vector_index = cls.get_use_vector_index()
+
+        return cls._delete_collection(collection_name=collection_name, use_vector_index=use_vector_index)
+
+    @classmethod
+    def _delete_collection(cls, collection_name: str, use_vector_index: bool = True) -> bool:
+        if use_vector_index is True:
+            vectors_config = VectorParams(size=EmbeddingModelSingleton().embedding_size, distance=Distance.COSINE)
+        else:
+            vectors_config = {}
+
+        return connection.delete_collection(collection_name=collection_name, vectors_config=vectors_config)
+
+
+    @classmethod
     def get_category(cls: Type[T]) -> DataCategory:
         if not hasattr(cls, "Config") or not hasattr(cls.Config, "category"):
             raise ImproperlyConfigured(

@@ -1,5 +1,5 @@
 # Objective
-- Developer Opportunity at Cisco through Del Oro Coosulting
+- Python and Golang Developer Opportunity through Del Oro Coosulting
 Design and implement a Python class that provides an interface for CRUD operations on text documents within a vector database.
 
 ## Task
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 2. **Other Python Packages and APIs:**
 
    This project leverages this Python packages and external APIs,
-   - ...
+   - ```zenml``` package: Create machine learning pipelines with minimal code changes
    - ...
    
 ## Bugs and Feature Requests
