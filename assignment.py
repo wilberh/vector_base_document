@@ -15,6 +15,11 @@ from qdrant_client.http import models
 from qdrant_client.http.models import ScoredPoint
 from enum import StrEnum
 
+# from llm_engineering.application.networks.embeddings import EmbeddingModelSingleton
+# from llm_engineering.domain.exceptions import ImproperlyConfigured
+# from llm_engineering.domain.types import DataCategory
+# from llm_engineering.infrastructure.db.qdrant import connection
+
 
 class LLMTwinException(Exception):
     pass
